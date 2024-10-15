@@ -1,5 +1,5 @@
 import { sendWhatsAppMessage } from '@pizza/evolution-api'
-import { logger, task } from '@trigger.dev/sdk/v3'
+import { logger, task, wait } from '@trigger.dev/sdk/v3'
 
 import { envTrigger } from '../../env'
 
@@ -19,6 +19,10 @@ export const sendWhatsAppMessageTask = task({
         url: envTrigger.EVOLUTION_API_URL,
         key: envTrigger.EVOLUTION_API_KEY,
       },
+    })
+
+    await wait.for({
+      seconds: 5,
     })
 
     return {
