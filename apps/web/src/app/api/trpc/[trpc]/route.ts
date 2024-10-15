@@ -1,7 +1,7 @@
+import { Handlers } from '@highlight-run/node'
 import { auth } from '@pizza/auth'
 import { env } from '@pizza/env'
 import { appRouter } from '@pizza/trpc'
-import { Handlers } from '@highlight-run/node'
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
 import { NextRequest, NextResponse } from 'next/server'
 

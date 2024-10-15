@@ -610,6 +610,9 @@ importers:
       '@pizza/evolution-api':
         specifier: workspace:*
         version: link:../evolution-api
+      '@pizza/joti-api':
+        specifier: workspace:*
+        version: link:../joti-api
       '@t3-oss/env-nextjs':
         specifier: 0.8.0
         version: 0.8.0(typescript@5.3.3)(zod@3.22.4)
@@ -619,6 +622,9 @@ importers:
       '@trpc/client':
         specifier: 11.0.0-next.324
         version: 11.0.0-next.324(@trpc/server@11.0.0-next.324)
+      axios:
+        specifier: 1.4.0
+        version: 1.4.0
       superjson:
         specifier: ^2.2.1
         version: 2.2.1

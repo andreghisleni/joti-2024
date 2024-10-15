@@ -32,15 +32,7 @@ import { Member } from './columns'
 
 const formName = memberSchema.description
 
-const values = {
-  type: [
-    { value: 'LOBINHO', label: 'Lobinho' },
-    { value: 'ESCOTEIRO', label: 'Escoteiro' },
-    { value: 'SENIOR', label: 'Senior' },
-    { value: 'PIONEIRO', label: 'Pioneiro' },
-    { value: 'OUTRO', label: 'Outro' },
-  ],
-}
+const values = {}
 
 export function MemberForm({
   refetch,

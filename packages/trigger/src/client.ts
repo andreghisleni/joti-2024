@@ -14,6 +14,6 @@ export const trpcLinks = [
   }),
 ]
 
-export const trpcClient = createTRPCClient({
+export const trpcClient: any = createTRPCClient({ // eslint-disable-line 
   links: trpcLinks,
 })

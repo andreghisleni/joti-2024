@@ -15,6 +15,5 @@ export const memberSchema = z
 export const memberUpdateSchema = memberSchema.merge(
   z.object({
     id: z.string().uuid(),
-    sessionId: z.string().uuid(),
   }),
 )

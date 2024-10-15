@@ -2,7 +2,7 @@ import axios from 'axios'
 import { z } from 'zod'
 
 const dataResponseSchema = z.object({
-  __id: z.string(),
+  _id: z.string(),
   date: z.string(),
   password: z.string(),
   role: z.string(),
