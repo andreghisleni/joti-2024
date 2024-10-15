@@ -1,5 +1,7 @@
+import { env } from '@pizza/env'
 import { prisma } from '@pizza/prisma'
 import { memberSchema, memberUpdateSchema } from '@pizza/schema'
+import { sendWhatsAppMessageTrigger } from '@pizza/trigger'
 import { z } from 'zod'
 
 import { createTRPCRouter, protectedProcedure, publicProcedure } from '../trpc'
@@ -103,5 +105,24 @@ export const membersRouter = createTRPCRouter({
     const totalMembers = await prisma.member.count()
 
     return { totalMembers }
+  }),
+
+  sendMessageForAllResponsible: protectedProcedure.mutation(async () => {
+    const responsible = await prisma.member.findMany({ take: 1 })
+
+    const taskResponse = await Promise.all(
+      responsible.map((responsible) => {
+        return sendWhatsAppMessageTrigger('send-whatsapp-message', {
+          message: `Olá ${responsible.responsibleName}, como mencionado no grupo dos pais da tropa Soyuz, eu estou passando para confirmar se vocês ainda tem acesso ao email: ${responsible.email}, que está cadastrado no paxtu e é o email que será enviado a senha para acessar a plataforma do joti.
+Vocês ainda tem acesso a esse email?`,
+          phone:
+            env.NODE_ENV === 'production'
+              ? `55${responsible.responsiblePhone}`
+              : '5549991991579',
+        })
+      }),
+    )
+
+    return { taskResponse, responsible }
   }),
 })

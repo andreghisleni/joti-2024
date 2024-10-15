@@ -45,7 +45,7 @@ export function RegisterForm() {
           title: 'Bem-vindo!',
           description: 'Usuário criado com sucesso',
         })
-        router.push('/')
+        router.push('/app')
       }
     } catch (error) {
       toast({

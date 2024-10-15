@@ -1,9 +1,19 @@
 'use client'
 
+import { ShowJson } from '@/components/show-json'
 import { Button } from '@/components/ui/button'
-
-import { TestTrigger } from './action'
+import { trpc } from '@/lib/trpc/react'
 
 export function Bt() {
-  return <Button onClick={() => TestTrigger()}>Teste</Button>
+  const { mutate, isPending, data } =
+    trpc.sendMessageForAllResponsible.useMutation()
+
+  return (
+    <div>
+      <Button onClick={() => mutate()} disabled={isPending}>
+        {isPending ? 'Carregando' : 'Enviar mensagens'}
+      </Button>
+      <ShowJson data={data || []} />
+    </div>
+  )
 }

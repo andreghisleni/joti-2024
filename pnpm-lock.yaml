@@ -41,6 +41,9 @@ importers:
       '@pizza/schema':
         specifier: workspace:*
         version: link:../../packages/schema
+      '@pizza/trigger':
+        specifier: workspace:*
+        version: link:../../packages/trigger
       '@pizza/trpc':
         specifier: workspace:*
         version: link:../../packages/trpc
@@ -122,9 +125,6 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.15.3
         version: 8.20.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@trigger.dev/sdk':
-        specifier: ^3.0.12
-        version: 3.0.12
       '@trpc/client':
         specifier: 11.0.0-next.324
         version: 11.0.0-next.324(@trpc/server@11.0.0-next.324)
@@ -466,6 +466,37 @@ importers:
         specifier: 20.4.0
         version: 20.4.0
 
+  packages/evolution-api:
+    dependencies:
+      '@pizza/cloudflare':
+        specifier: workspace:*
+        version: link:../cloudflare
+      '@pizza/env':
+        specifier: workspace:*
+        version: link:../env
+      axios:
+        specifier: 1.4.0
+        version: 1.4.0
+      dotenv-cli:
+        specifier: 7.3.0
+        version: 7.3.0
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
+    devDependencies:
+      '@pizza/eslint-config':
+        specifier: workspace:*
+        version: link:../../config/eslint-config
+      '@pizza/prettier':
+        specifier: workspace:*
+        version: link:../../config/prettier
+      '@pizza/tsconfig':
+        specifier: workspace:*
+        version: link:../../config/tsconfig
+      tsx:
+        specifier: 4.7.1
+        version: 4.7.1
+
   packages/prisma:
     dependencies:
       '@faker-js/faker':
@@ -543,6 +574,46 @@ importers:
         specifier: 4.7.1
         version: 4.7.1
 
+  packages/trigger:
+    dependencies:
+      '@pizza/env':
+        specifier: workspace:*
+        version: link:../env
+      '@pizza/evolution-api':
+        specifier: workspace:*
+        version: link:../evolution-api
+      '@pizza/prisma':
+        specifier: workspace:*
+        version: link:../prisma
+      '@t3-oss/env-nextjs':
+        specifier: 0.8.0
+        version: 0.8.0(typescript@5.3.3)(zod@3.22.4)
+      '@trigger.dev/sdk':
+        specifier: ^3.0.12
+        version: 3.0.12
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
+    devDependencies:
+      '@pizza/eslint-config':
+        specifier: workspace:*
+        version: link:../../config/eslint-config
+      '@pizza/prettier':
+        specifier: workspace:*
+        version: link:../../config/prettier
+      '@pizza/tsconfig':
+        specifier: workspace:*
+        version: link:../../config/tsconfig
+      '@trigger.dev/build':
+        specifier: ^3.0.12
+        version: 3.0.12(typescript@5.3.3)
+      '@types/node':
+        specifier: 20.4.0
+        version: 20.4.0
+      tsx:
+        specifier: 4.7.1
+        version: 4.7.1
+
   packages/trpc:
     dependencies:
       '@pizza/auth':
@@ -563,6 +634,9 @@ importers:
       '@pizza/schema':
         specifier: workspace:*
         version: link:../schema
+      '@pizza/trigger':
+        specifier: workspace:*
+        version: link:../trigger
       '@prisma/client':
         specifier: 5.11.0
         version: 5.11.0(prisma@5.19.1)

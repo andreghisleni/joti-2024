@@ -14,6 +14,7 @@
     "@pizza/env": "workspace:*",
     "@pizza/prisma": "workspace:*",
     "@pizza/schema": "workspace:*",
+    "@pizza/trigger": "workspace:*",
     "@prisma/client": "5.11.0",
     "@trpc/server": "11.0.0-next.324",
     "bcryptjs": "^2.4.3",

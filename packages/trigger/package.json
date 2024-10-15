@@ -1,0 +1,33 @@
+{
+  "name": "@pizza/trigger",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@t3-oss/env-nextjs": "0.8.0",
+    "zod": "^3.22.4",
+    "@trigger.dev/sdk": "^3.0.12",
+    "@pizza/prisma": "workspace:*",
+    "@pizza/env": "workspace:*",
+    "@pizza/evolution-api": "workspace:*"
+  },
+  "devDependencies": {
+    "@pizza/eslint-config": "workspace:*",
+    "@pizza/prettier": "workspace:*",
+    "@pizza/tsconfig": "workspace:*",
+    "tsx": "4.7.1",
+    "@trigger.dev/build": "^3.0.12",
+    "@types/node": "20.4.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@pizza/eslint-config/lib"
+    ]
+  },
+  "prettier": "@pizza/prettier"
+}

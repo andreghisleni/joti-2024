@@ -13,6 +13,8 @@ export const env = createEnv({
     CLOUDFLARE_UPLOAD_BUCKET_NAME: z.string().min(1),
     AUTH_SECRET: z.string().min(1),
     HIGHLIGHT_PROJECT_ID: z.string().optional(),
+    EVOLUTION_API_URL: z.string().min(1),
+    EVOLUTION_API_KEY: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_VERCEL_URL: z.string().url().min(1),
@@ -33,6 +35,8 @@ export const env = createEnv({
     CLOUDFLARE_UPLOAD_BUCKET_NAME: process.env.CLOUDFLARE_UPLOAD_BUCKET_NAME,
     AUTH_SECRET: process.env.AUTH_SECRET,
     HIGHLIGHT_PROJECT_ID: process.env.HIGHLIGHT_PROJECT_ID,
+    EVOLUTION_API_URL: process.env.EVOLUTION_API_URL,
+    EVOLUTION_API_KEY: process.env.EVOLUTION_API_KEY,
   },
   emptyStringAsUndefined: true,
 })

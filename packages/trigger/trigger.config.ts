@@ -16,5 +16,6 @@ export default defineConfig({
       randomize: true,
     },
   },
+
   dirs: ['./src/trigger/tasks'],
 })
