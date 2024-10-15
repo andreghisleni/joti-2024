@@ -497,6 +497,34 @@ importers:
         specifier: 4.7.1
         version: 4.7.1
 
+  packages/joti-api:
+    dependencies:
+      '@pizza/cloudflare':
+        specifier: workspace:*
+        version: link:../cloudflare
+      '@pizza/env':
+        specifier: workspace:*
+        version: link:../env
+      axios:
+        specifier: 1.4.0
+        version: 1.4.0
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
+    devDependencies:
+      '@pizza/eslint-config':
+        specifier: workspace:*
+        version: link:../../config/eslint-config
+      '@pizza/prettier':
+        specifier: workspace:*
+        version: link:../../config/prettier
+      '@pizza/tsconfig':
+        specifier: workspace:*
+        version: link:../../config/tsconfig
+      tsx:
+        specifier: 4.7.1
+        version: 4.7.1
+
   packages/prisma:
     dependencies:
       '@faker-js/faker':
@@ -582,15 +610,18 @@ importers:
       '@pizza/evolution-api':
         specifier: workspace:*
         version: link:../evolution-api
-      '@pizza/prisma':
-        specifier: workspace:*
-        version: link:../prisma
       '@t3-oss/env-nextjs':
         specifier: 0.8.0
         version: 0.8.0(typescript@5.3.3)(zod@3.22.4)
       '@trigger.dev/sdk':
         specifier: ^3.0.12
         version: 3.0.12
+      '@trpc/client':
+        specifier: 11.0.0-next.324
+        version: 11.0.0-next.324(@trpc/server@11.0.0-next.324)
+      superjson:
+        specifier: ^2.2.1
+        version: 2.2.1
       zod:
         specifier: ^3.22.4
         version: 3.22.4

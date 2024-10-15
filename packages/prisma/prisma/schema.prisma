@@ -58,4 +58,31 @@ model Member {
   responsiblePhone String @map("responsible_phone")
 
   createdAt DateTime @default(now()) @map("created_at")
+
+  jotiMembers JotiMember[]
+}
+
+model JotiMember {
+  id String @id @default(uuid())
+
+  externalId  String  @map("external_id")
+  date        String
+  password    String
+  role        String
+  email       String
+  groupName   String  @map("group_name")
+  groupNumber String  @map("group_number")
+  name        String
+  region      String
+  lgpd        Boolean
+  register    String
+  session     String
+  association String
+  active      Boolean
+  v           Int
+
+  memberId String @map("member_id")
+  member   Member @relation(fields: [memberId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
 }

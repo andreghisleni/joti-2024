@@ -80,6 +80,9 @@ export const membersRouter = createTRPCRouter({
       orderBy: {
         name: 'asc',
       },
+      include: {
+        jotiMembers: true,
+      },
     })
 
     return { members }

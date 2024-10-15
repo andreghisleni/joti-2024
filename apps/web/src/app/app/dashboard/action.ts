@@ -1,6 +1,6 @@
 'use server'
 
-import { helloWorldTrigger } from '@/trigger/tasks-trigguer'
+import { helloWorldTrigger } from '@pizza/trigger'
 
 export async function TestTrigger() {
   helloWorldTrigger('hello-world', { name: 'Teste' })

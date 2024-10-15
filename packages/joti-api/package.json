@@ -1,27 +1,20 @@
 {
-  "name": "@pizza/trigger",
+  "name": "@pizza/joti-api",
   "main": "./index.ts",
   "types": "./index.ts",
   "version": "0.0.0",
   "private": true,
-  "scripts": {
-    "lint": "eslint ."
-  },
+  "scripts": {},
   "dependencies": {
+    "@pizza/cloudflare": "workspace:*",
     "@pizza/env": "workspace:*",
-    "@pizza/evolution-api": "workspace:*",
-    "@t3-oss/env-nextjs": "0.8.0",
-    "@trigger.dev/sdk": "^3.0.12",
-    "@trpc/client": "11.0.0-next.324",
-    "superjson": "^2.2.1",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "axios": "1.4.0"
   },
   "devDependencies": {
     "@pizza/eslint-config": "workspace:*",
     "@pizza/prettier": "workspace:*",
     "@pizza/tsconfig": "workspace:*",
-    "@trigger.dev/build": "^3.0.12",
-    "@types/node": "20.4.0",
     "tsx": "4.7.1"
   },
   "eslintConfig": {
