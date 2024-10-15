@@ -1,0 +1,39 @@
+{
+  "name": "@pizza/trpc",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@pizza/auth": "workspace:*",
+    "@pizza/cloudflare": "workspace:*",
+    "@pizza/dayjs": "workspace:*",
+    "@pizza/env": "workspace:*",
+    "@pizza/prisma": "workspace:*",
+    "@pizza/schema": "workspace:*",
+    "@prisma/client": "5.11.0",
+    "@trpc/server": "11.0.0-next.324",
+    "bcryptjs": "^2.4.3",
+    "date-fns": "^3.6.0",
+    "date-fns-tz": "^3.1.3",
+    "kutt": "^3.0.2",
+    "superjson": "^2.2.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@pizza/eslint-config": "workspace:*",
+    "@pizza/prettier": "workspace:*",
+    "@pizza/tsconfig": "workspace:*",
+    "@types/bcryptjs": "^2.4.6"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@pizza/eslint-config/lib"
+    ]
+  },
+  "prettier": "@pizza/prettier"
+}
