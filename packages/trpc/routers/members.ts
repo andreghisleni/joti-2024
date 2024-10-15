@@ -113,7 +113,7 @@ export const membersRouter = createTRPCRouter({
     const taskResponse = await Promise.all(
       responsible.map((responsible) => {
         return sendWhatsAppMessageTrigger('send-whatsapp-message', {
-          message: `Olá ${responsible.responsibleName},\ncomo mencionado no grupo dos pais da tropa Soyuz,\neu estou passando para confirmar se vocês ainda tem acesso ao email:\n${responsible.email},\nque está cadastrado no paxtu e é o email que será enviado a senha para acessar a plataforma do JOTI.\n*Vocês ainda tem acesso a esse email?*`,
+          message: `Olá ${responsible.responsibleName}, eu sou o Chefe André,\ncomo mencionado no grupo dos pais da tropa Soyuz,\neu estou passando para confirmar se vocês ainda tem acesso ao email:\n${responsible.email},\nque está cadastrado no paxtu e é o email que será enviado a senha para acessar a plataforma do JOTI.\n*Vocês ainda tem acesso a esse email?*`,
           phone:
             env.NODE_ENV === 'production'
               ? `55${responsible.responsiblePhone}`

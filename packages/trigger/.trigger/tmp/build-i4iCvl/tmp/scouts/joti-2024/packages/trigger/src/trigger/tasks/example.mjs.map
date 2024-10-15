@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../../../../../../../src/trigger/tasks/example.ts"],
-  "sourcesContent": ["import { logger, task } from '@trigger.dev/sdk/v3'\n\nexport const helloWorldTask = task({\n  id: 'hello-world',\n  maxDuration: 300, // 5 minutes\n  run: async (payload: any, { ctx }) => { // eslint-disable-line\n    logger.log('Hello, world!', { payload, ctx })\n\n    // await wait.for({ seconds: 5 })\n\n    // const members = await fetch('/api/trpc/getMembers')\n\n    // const membersJson = await members.json()\n\n    return {\n      message: 'Hello, world!',\n\n      // membersJson,\n      ctx,\n    }\n  },\n})\n"],
-  "mappings": ";;;;;;;;;AAAA;AAEO,IAAM,iBAAiB,KAAK;AAAA,EACjC,IAAI;AAAA,EACJ,aAAa;AAAA;AAAA,EACb,KAAK,OAAO,SAAc,EAAE,IAAI,MAAM;AACpC,WAAO,IAAI,iBAAiB,EAAE,SAAS,IAAI,CAAC;AAQ5C,WAAO;AAAA,MACL,SAAS;AAAA;AAAA,MAGT;AAAA,IACF;AAAA,EACF;AACF,CAAC;",
-  "names": []
-}
