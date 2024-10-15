@@ -137,6 +137,22 @@ export const membersRouter = createTRPCRouter({
     return { taskResponse, responsible }
   }),
 
+  createAllJotiAccounts: protectedProcedure.mutation(async () => {
+    const responsible = await prisma.member.findMany()
+
+    const taskResponse = await Promise.all(
+      responsible.map((responsible) => {
+        return createAccountJotiTrigger('create-account-joti', {
+          memberId: responsible.id,
+          register: responsible.registerNumber,
+          responsiblePhone: responsible.responsiblePhone,
+        })
+      }),
+    )
+
+    return { taskResponse, responsible }
+  }),
+
   createJotiMember: publicProcedure
     .input(
       z.object({
@@ -215,6 +231,7 @@ export const membersRouter = createTRPCRouter({
       const response = await createAccountJotiTrigger('create-account-joti', {
         memberId: member.id,
         register: member.registerNumber,
+        responsiblePhone: member.responsiblePhone,
       })
 
       return { response }

@@ -102,7 +102,6 @@ export function MemberForm({
         await updateMember.mutateAsync({
           id: member.id,
           ...values,
-          sessionId: '',
         })
       } else {
         // await createMember.mutateAsync(values)

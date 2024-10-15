@@ -3,6 +3,7 @@ import { logger, task } from '@trigger.dev/sdk/v3'
 import axios from 'axios'
 
 import { envTrigger } from '../../env'
+import { sendWhatsAppMessageTrigger } from '../tasks-trigger'
 
 export const createAccountJotiTask = task({
   id: 'create-account-joti',
@@ -10,7 +11,10 @@ export const createAccountJotiTask = task({
   queue: {
     concurrencyLimit: 1,
   },
-  run: async (payload: { memberId: string; register: string }, { ctx }) => {
+  run: async (
+    payload: { memberId: string; register: string; responsiblePhone: string },
+    { ctx },
+  ) => {
     logger.log('Create account', { payload, ctx })
 
     const response = await createAccount({
@@ -44,6 +48,11 @@ export const createAccountJotiTask = task({
       association: response.data.association,
       active: response.data.active,
       __v: response.data.__v,
+    })
+
+    await sendWhatsAppMessageTrigger('send-whatsapp-message', {
+      phone: payload.responsiblePhone,
+      message: `Olá! Conta no Joti foi criada, verifique o email: ${response.data.email},\nlembrando que é necessário acessar a plataforma do joti o quanto ates para confirmar a conta.`,
     })
 
     return {
