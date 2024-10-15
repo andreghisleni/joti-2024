@@ -46,62 +46,16 @@ model Settings {
 model Member {
   id String @id @default(uuid())
 
-  visionId  String? @map("vision_id")
-  name      String
-  cleanName String  @map("clean_name")
-  register  String?
+  name String
 
-  sessionId String  @map("session_id")
-  session   Session @relation(fields: [sessionId], references: [id])
+  registerNumber String @map("register_number")
+  registerCode   String @map("register_code")
 
-  createdAt DateTime @default(now()) @map("created_at")
+  phone String?
+  email String
 
-  tickets Ticket[]
-}
-
-model Session {
-  id String @id @default(uuid())
-
-  name String @unique
-
-  type SessionType
+  responsibleName  String @map("responsible_name")
+  responsiblePhone String @map("responsible_phone")
 
   createdAt DateTime @default(now()) @map("created_at")
-
-  members Member[]
-
-  @@map("sessions")
-}
-
-enum SessionType {
-  LOBINHO
-  ESCOTEIRO
-  SENIOR
-  PIONEIRO
-  OUTRO
-}
-
-model Ticket {
-  id String @id @default(uuid())
-
-  number Int @unique
-
-  memberId String? @map("member_id")
-  member   Member? @relation(fields: [memberId], references: [id])
-
-  name        String?
-  phone       String?
-  description String?
-
-  deliveredAt DateTime? @map("delivered_at")
-
-  createdAt DateTime      @default(now()) @map("created_at")
-  created   TicketCreated @default(ONTHELOT) @map("created")
-
-  @@map("tickets")
-}
-
-enum TicketCreated {
-  ONTHELOT
-  AFTERIMPORT
 }

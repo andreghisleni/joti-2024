@@ -1,6 +1,5 @@
 import { prisma } from '@pizza/prisma'
 import { memberSchema, memberUpdateSchema } from '@pizza/schema'
-import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
 
 import { createTRPCRouter, protectedProcedure, publicProcedure } from '../trpc'
@@ -13,39 +12,25 @@ export const membersRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ input }) => {
-      const sessionNames = Array.from(
-        new Set(input.data.map((member) => member.sessionName)),
-      )
-
-      const sessions = await prisma.session.findMany({
-        where: {
-          name: {
-            in: sessionNames,
-          },
-        },
-      })
-
-      console.log(sessions)
-
-      if (sessions.length !== sessionNames.length) {
-        throw new TRPCError({
-          code: 'NOT_FOUND',
-          message: 'Session not found',
-        })
-      }
-
       const members = await prisma.member.createMany({
-        data: input.data.map(({ sessionName, ...d }) => ({
-          ...d,
-          visionId: d.visionId === 'undefined' ? null : d.visionId,
+        data: input.data.map((d) => ({
           name: d.name
             .toLowerCase()
             .replace(/(?:^|\s)\S/g, (a) => a.toUpperCase()),
-          cleanName: d.name
+          // cleanName: d.name
+          //   .toLowerCase()
+          //   .normalize('NFD')
+          //   .replace(/[\u0300-\u036f]/g, ''),
+          email: d.email.toLowerCase(),
+          responsibleName: d.responsibleName
             .toLowerCase()
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, ''),
-          sessionId: sessions.find((s) => s.name === sessionName)!.id,
+            .replace(/(?:^|\s)\S/g, (a) => a.toUpperCase()),
+          responsiblePhone: d.responsiblePhone.replace(/\D/g, ''),
+
+          phone: d.phone ? d.phone.replace(/\D/g, '') : null,
+
+          registerCode: d.registerCode.toUpperCase(),
+          registerNumber: d.registerNumber.toUpperCase(),
         })),
         skipDuplicates: true,
       })
@@ -93,46 +78,10 @@ export const membersRouter = createTRPCRouter({
       orderBy: {
         name: 'asc',
       },
-      include: {
-        session: true,
-      },
     })
 
     return { members }
   }),
-
-  getMembersWithVisionIdsOrNames: protectedProcedure
-    .input(
-      z.object({
-        visionIds: z.array(z.string()),
-        names: z.array(z.string()),
-      }),
-    )
-    .query(async ({ input }) => {
-      const members = await prisma.member.findMany({
-        where: {
-          OR: [
-            {
-              visionId: {
-                in: input.visionIds,
-              },
-            },
-            {
-              cleanName: {
-                in: input.names.map((name) =>
-                  name
-                    .toLowerCase()
-                    .normalize('NFD')
-                    .replace(/[\u0300-\u036f]/g, ''),
-                ),
-              },
-            },
-          ],
-        },
-      })
-
-      return { members }
-    }),
 
   getMemberByRegister: publicProcedure
     .input(
@@ -143,15 +92,7 @@ export const membersRouter = createTRPCRouter({
     .query(async ({ input }) => {
       const member = await prisma.member.findFirst({
         where: {
-          register: input.register,
-        },
-        include: {
-          tickets: {
-            orderBy: {
-              number: 'asc',
-            },
-          },
-          session: true,
+          registerNumber: input.register,
         },
       })
 

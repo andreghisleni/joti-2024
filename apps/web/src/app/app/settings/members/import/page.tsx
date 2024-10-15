@@ -12,10 +12,24 @@ import { trpc } from '@/lib/trpc/react'
 import { columns } from './columns'
 
 export type Item = {
-  visionId: string
   name: string
-  sessionName: string
-  register: string
+  registerNumber: string
+  registerCode: string
+  phone?: string
+  email: string
+
+  responsibleName: string
+  responsiblePhone: string
+}
+
+type ItemImport = {
+  Registro: string
+  'Nome do associado': string
+  Equipe?: string
+  Celular?: string
+  'E-mail': string
+  'Nome Responsável': string
+  'Celular Responsável': string
 }
 
 export default function MyNextJsExcelSheet() {
@@ -43,7 +57,17 @@ export default function MyNextJsExcelSheet() {
       }
     })
     promise.then((d) => {
-      setItems((d as Item[]).filter((i) => i.name && i.name !== '#N/A'))
+      setItems(
+        (d as ItemImport[]).map((i) => ({
+          name: i['Nome do associado'],
+          registerNumber: i.Registro.split(' - ')[0],
+          registerCode: i.Registro.split(' - ')[1],
+          phone: i.Celular,
+          email: i['E-mail'],
+          responsibleName: i['Nome Responsável'],
+          responsiblePhone: i['Celular Responsável'],
+        })),
+      )
     })
   }
 
@@ -69,9 +93,12 @@ export default function MyNextJsExcelSheet() {
     createMembers.mutate({
       data: items.map((item) => ({
         name: item.name,
-        sessionName: item.sessionName,
-        register: String(item.register),
-        visionId: String(item.visionId),
+        email: item.email,
+        phone: item.phone,
+        registerNumber: item.registerNumber,
+        registerCode: item.registerCode,
+        responsibleName: item.responsibleName,
+        responsiblePhone: item.responsiblePhone,
       })),
     })
   }
@@ -97,18 +124,6 @@ export default function MyNextJsExcelSheet() {
           <ul>
             <li>
               <span>Total de registros: </span> {items.length}
-            </li>
-            <li>
-              <span>Total de registros sem visionId: </span>{' '}
-              {items.filter((i) => !i.visionId).length}
-            </li>
-            <li>
-              <span>Total de registros sem registro: </span>{' '}
-              {items.filter((i) => !i.register).length}
-            </li>
-            <li>
-              <span>Total de registros sem registro e visionId: </span>{' '}
-              {items.filter((i) => !i.register && !i.visionId).length}
             </li>
           </ul>
 
